@@ -1,0 +1,56 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@using Shared.Dtos
+@model List<KategorilerDto>
+
+<div class="container">
+	<div class="page-title">
+		<h3>Kategori İşlemleri</h3>
+	</div>
+	<div class="row">
+
+		<div class="col-md-12 col-lg-12">
+			<div class="card">
+				<div class="card-header">Kategoriler</div>
+				<a href="/Kategori/Ekle" style="float:right; width:60px;" class="btn btn-icon icon-left btn-info float-right mb-2">Yeni Ekle</a>
+				<div class="card-body">
+					<p class="card-title">Kategoriler ile ilgili tüm işlemleri buradan yapabilirsiniz. Toplam Aktif Veri Sayısı : @Model.Where(x => x.Aktifmi == true).Count()</p>
+					<table class="table table-hover" id="dataTables-example" width="100%">
+						<thead>
+							<tr>
+								<th>Açıklama</th>
+								<th>Durum</th>
+								<th>İşlemler</th>
+							</tr>
+						</thead>
+						<tbody>
+							@foreach (var item in Model)
+							{
+								<tr>
+									<td>@item.Aciklama</td>
+									<td>
+										@if (item.Aktifmi)
+										{
+											<span class="badge bg-info">Aktif</span>
+										}
+										else
+										{
+											<span class="badge bg-danger">Pasif</span>
+										}
+									</td>
+									<td>
+										<a href="/Kategori/Guncelle?kategoriId=@item.Id" class="btn btn-icon icon-left btn-info mb-2">Güncelle</a>
+										<a href="/Kategori/Sil?kategoriId=@item.Id" class="btn btn-icon  bg-danger icon-left btn-info mb-2">Sil</a>
+									</td>
+								</tr>
+							}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
