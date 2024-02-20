@@ -15,7 +15,9 @@
 		<div class="col-md-12 col-lg-12">
 			<div class="card">
 				<div class="card-header">Kategoriler</div>
-				<a href="/Kategori/Ekle" style="float:right; width:60px;" class="btn btn-icon icon-left btn-info float-right mb-2">Yeni Ekle</a>
+				<div class="offset-8 mt-2">
+					<a href="/Kategori/Ekle" style="float:right; width:60px;" class="btn btn-icon icon-left btn-info float-right mb-2">Yeni Ekle</a>
+				</div>
 				<div class="card-body">
 					<p class="card-title">Kategoriler ile ilgili tüm işlemleri buradan yapabilirsiniz. Toplam Aktif Veri Sayısı : @Model.Where(x => x.Aktifmi == true).Count()</p>
 					<table class="table table-hover" id="dataTables-example" width="100%">

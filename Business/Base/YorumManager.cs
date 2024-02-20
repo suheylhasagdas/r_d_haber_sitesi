@@ -8,9 +8,11 @@ namespace Business.Base
 	public class YorumManager : IYorumService
 	{
 		private readonly IRepository<Yorumlar> _repository;
-		public YorumManager(IRepository<Yorumlar> repository)
+		private readonly IRepository<Haberler> _haberRepository;
+		public YorumManager(IRepository<Yorumlar> repository, IRepository<Haberler> haberRepository)
 		{
 			_repository = repository;
+			_haberRepository = haberRepository;
 		}
 		public bool DeleteYorum(int id)
 		{
@@ -37,6 +39,7 @@ namespace Business.Base
 
 		public YorumlarDto InsertYorum(YorumlarDto model)
 		{
+			model.EklenmeTarihi = DateTime.Now;
 			var response = _repository.Insert(YorumItem(model));
 
 			return YorumItem(response);
@@ -45,6 +48,14 @@ namespace Business.Base
 		public YorumlarDto UpdateYorum(YorumlarDto model)
 		{
 			var yorum = _repository.GetById(model.Id);
+			yorum.Id = model.Id;
+			yorum.Ad = model.Ad;
+			yorum.Soyad = model.Soyad;
+			yorum.HaberId = model.HaberId;
+			yorum.Eposta = model.Eposta;
+			yorum.Baslik = model.Baslik;
+			yorum.Icerik = model.Icerik;
+			yorum.Aktifmi = model.Aktifmi;
 			var response = _repository.Update(yorum);
 
 			return YorumItem(response);
@@ -62,6 +73,7 @@ namespace Business.Base
 			result.Icerik = model.Icerik;
 			result.EklenmeTarihi = model.EklenmeTarihi;
 			result.Aktifmi = model.Aktifmi;
+			result.HaberBaslik = _haberRepository.GetById(model.HaberId).Baslik;
 			return result;
 		}
 		private Yorumlar YorumItem(YorumlarDto model)
