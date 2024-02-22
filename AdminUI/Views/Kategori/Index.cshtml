@@ -14,9 +14,11 @@
 
 		<div class="col-md-12 col-lg-12">
 			<div class="card">
-				<div class="card-header">Kategoriler</div>
-				<div class="offset-8 mt-2">
-					<a href="/Kategori/Ekle" style="float:right; width:60px;" class="btn btn-icon icon-left btn-info float-right mb-2">Yeni Ekle</a>
+				<div class="card-header">
+					<div class="row">
+						<div class="col-9" style="line-height:50px;">Kategoriler</div>
+						<div class="col-3"><a href="/Kategori/Ekle" style="float:right;color: white;background-color:green;" class="btn float-right m-2"><i class="fa fa-plus"></i></a></div>
+					</div>
 				</div>
 				<div class="card-body">
 					<p class="card-title">Kategoriler ile ilgili tüm işlemleri buradan yapabilirsiniz. Toplam Aktif Veri Sayısı : @Model.Where(x => x.Aktifmi == true).Count()</p>
@@ -25,7 +27,7 @@
 							<tr>
 								<th>Açıklama</th>
 								<th>Durum</th>
-								<th>İşlemler</th>
+								<th style="min-width:110px;">İşlemler</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -44,8 +46,8 @@
 										}
 									</td>
 									<td>
-										<a href="/Kategori/Guncelle?kategoriId=@item.Id" class="btn btn-icon icon-left btn-info mb-2">Güncelle</a>
-										<a href="/Kategori/Sil?kategoriId=@item.Id" class="btn btn-icon  bg-danger icon-left btn-info mb-2">Sil</a>
+										<a href="/Kategori/Guncelle?kategoriId=@item.Id" class="btn btn-primary mb-2"><i class="fa fa-edit"></i></a>
+										<a href="/Kategori/Sil?kategoriId=@item.Id" class="btn btn-danger mb-2" style="width: 44px;"><i class="fa fa-times"></i></a>
 									</td>
 								</tr>
 							}

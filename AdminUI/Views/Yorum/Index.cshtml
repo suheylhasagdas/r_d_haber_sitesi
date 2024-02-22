@@ -1,5 +1,4 @@
-﻿
-@using Shared.Dtos
+﻿@using Shared.Dtos
 @model List<YorumlarDto>
 
 <div class="container">
@@ -10,9 +9,12 @@
 
 		<div class="col-md-12 col-lg-12">
 			<div class="card">
-				<div class="card-header">Yorumlar</div>
-				<div class="offset-8 mt-2"><a href="/Yorum/Ekle" style="float:right;width: 120px;color: white;" class="btn btn-icon icon-left btn-info float-right mb-2">Yeni Ekle</a></div>
-				
+				<div class="card-header">
+					<div class="row">
+						<div class="col-9" style="line-height:50px;">Yorumlar</div>
+						<div class="col-3"><a href="/Yorum/Ekle" style="float:right;color: white;background-color:green;" class="btn float-right m-2"><i class="fa fa-plus"></i></a></div>
+					</div>
+				</div>
 				<div class="card-body">
 					<p class="card-title">Yorumlar ile ilgili tüm işlemleri buradan yapabilirsiniz. Toplam Aktif Veri Sayısı : @Model.Where(x => x.Aktifmi == true).Count()</p>
 					<table class="table table-hover" id="dataTables-example" width="100%">
@@ -26,7 +28,7 @@
 								<th>Haber</th>
 								<th>Eklenme Tarihi</th>
 								<th>Durum</th>
-								<th>İşlemler</th>
+								<th style="min-width:110px;">İşlemler</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -51,8 +53,8 @@
 										}
 									</td>
 									<td>
-										<a href="/Yorum/Guncelle?yorumId=@item.Id" class="btn btn-icon icon-left btn-info mb-2">Güncelle</a>
-										<a href="/Yorum/Sil?yorumId=@item.Id" class="btn btn-icon  bg-danger icon-left btn-info mb-2">Sil</a>
+										<a href="/Yorum/Guncelle?yorumId=@item.Id" class="btn btn-primary mb-2"><i class="fa fa-edit"></i></a>
+										<a href="/Yorum/Sil?yorumId=@item.Id" class="btn btn-danger mb-2" style="width: 44px;"><i class="fa fa-times"></i></a>
 									</td>
 								</tr>
 							}
