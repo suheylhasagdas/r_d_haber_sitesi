@@ -15,6 +15,7 @@ builder.Services.AddScoped<IHaberApiRequest, HaberApiRequest>();
 builder.Services.AddScoped<IYazarApiRequest, YazarApiRequest>();
 builder.Services.AddScoped<IKategoriApiRequest, KategoriApiRequest>();
 builder.Services.AddScoped<IYorumApiRequest, YorumApiRequest>();
+builder.Services.AddScoped<ICommonApiRequest, CommonApiRequest>();
 #endregion
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(x => { x.LoginPath = "/Account/Login"; });

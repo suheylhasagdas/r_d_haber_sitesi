@@ -1,6 +1,8 @@
-﻿
-@using AdminUI.Models
-@model YorumViewModel
+﻿@using AdminUI.Models
+@model YazarViewModel
+@{
+	string apiUrl = "https://localhost:7063";
+}
 <div class="container">
 	<div class="page-title">
 		<h3>Yorum İşlemleri</h3>
@@ -9,12 +11,13 @@
 
 		<div class="col-md-12 col-lg-12">
 			<div class="card">
-				<div class="card-header">Yorum Ekle</div>
+				<div class="card-header">Yorum Güncelle</div>
 				<div class="card-body">
-					<p class="card-title">Yorum ekleme işlemi yapabilirsiniz.</p>
+					<p class="card-title">Yorum güncelleme işlemi yapabilirsiniz.</p>
 
-					@using (Html.BeginForm("YorumEkle", "Yorum", FormMethod.Post))
+					@using (Html.BeginForm("YazarGuncelle", "Yazar", FormMethod.Post, new { enctype = "multipart/form-data" }))
 					{
+						@Html.HiddenFor(x => x.Id)
 						<div class="mb-3">
 							<label for="email" class="form-label">Ad</label>
 							@Html.TextBoxFor(x => x.Ad, new { placeholder = "Ad", @class = "form-control" })
@@ -28,16 +31,17 @@
 							@Html.TextBoxFor(x => x.Eposta, new { placeholder = "E-Posta", @class = "form-control" })
 						</div>
 						<div class="mb-3">
-							<label for="email" class="form-label">Başlık</label>
-							@Html.TextBoxFor(x => x.Baslik, new { placeholder = "Başlık", @class = "form-control" })
+							<label for="email" class="form-label">Şifre</label>
+							@Html.TextBoxFor(x => x.Sifre, new { placeholder = "Şifre", type = "password", @class = "form-control" })
 						</div>
 						<div class="mb-3">
-							<label for="email" class="form-label">İçerik</label>
-							@Html.TextBoxFor(x => x.Icerik, new { placeholder = "İçerik", @class = "form-control" })
+							<label for="email" class="form-label">Geçerli Resim</label>
+							<img src="@Url.Content(apiUrl + Model.Resim)" style="max-height:150px;" />
+							@Html.HiddenFor(x=>x.Resim)
 						</div>
 						<div class="mb-3">
-							<label for="email" class="form-label">Haber Id</label>
-							@Html.TextBoxFor(x => x.HaberId, new { placeholder = "Haber Id", @class = "form-control" })
+							<label for="email" class="form-label">Yeni Resim</label>
+							@Html.TextBoxFor(x => x.ResimFile, new { type = "file", @class = "form-control" })
 						</div>
 						<div class="mb-3">
 							<label for="email" class="form-label">Statü</label>
@@ -46,7 +50,7 @@
 							</div>
 						</div>
 						<br />
-						<button type="submit" class="btn btn-primary">Ekle</button>
+						<button type="submit" class="btn btn-warning">Güncelle</button>
 					}
 				</div>
 			</div>

@@ -1,6 +1,5 @@
-﻿
-@using AdminUI.Models
-@model YorumViewModel
+﻿@using AdminUI.Models
+@model YazarViewModel
 <div class="container">
 	<div class="page-title">
 		<h3>Yorum İşlemleri</h3>
@@ -13,7 +12,7 @@
 				<div class="card-body">
 					<p class="card-title">Yorum ekleme işlemi yapabilirsiniz.</p>
 
-					@using (Html.BeginForm("YorumEkle", "Yorum", FormMethod.Post))
+					@using (Html.BeginForm("YazarEkle", "Yazar", FormMethod.Post, new { enctype = "multipart/form-data" }))
 					{
 						<div class="mb-3">
 							<label for="email" class="form-label">Ad</label>
@@ -28,16 +27,12 @@
 							@Html.TextBoxFor(x => x.Eposta, new { placeholder = "E-Posta", @class = "form-control" })
 						</div>
 						<div class="mb-3">
-							<label for="email" class="form-label">Başlık</label>
-							@Html.TextBoxFor(x => x.Baslik, new { placeholder = "Başlık", @class = "form-control" })
+							<label for="email" class="form-label">Şifre</label>
+							@Html.TextBoxFor(x => x.Sifre, new { placeholder = "Şifre", type = "password", @class = "form-control" })
 						</div>
 						<div class="mb-3">
-							<label for="email" class="form-label">İçerik</label>
-							@Html.TextBoxFor(x => x.Icerik, new { placeholder = "İçerik", @class = "form-control" })
-						</div>
-						<div class="mb-3">
-							<label for="email" class="form-label">Haber Id</label>
-							@Html.TextBoxFor(x => x.HaberId, new { placeholder = "Haber Id", @class = "form-control" })
+							<label for="email" class="form-label">Resim</label>
+							@Html.TextBoxFor(x => x.ResimFile, new { type = "file", @class = "form-control" })
 						</div>
 						<div class="mb-3">
 							<label for="email" class="form-label">Statü</label>

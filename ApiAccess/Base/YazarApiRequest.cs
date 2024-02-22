@@ -14,6 +14,28 @@ namespace ApiAccess.Base
         public YazarlarDto GetYazarByEmailPassword(string email, string password)
         {
             return _requestService.Get<YazarlarDto>("Yazar/GetYazarByEmailPassword?email=" + email + "&password=" + password);
-        }
-    }
+		}
+		public bool DeleteYazar(int yazarId)
+		{
+			return _requestService.Get<bool>("Yazar/DeleteYazar?yazarId=" + yazarId);
+		}
+
+		public List<YazarlarDto> GetAllYazar()
+		{
+			return _requestService.Get<List<YazarlarDto>>("Yazar/GetAllYazar");
+		}
+
+		public YazarlarDto GetYazarById(int yazarId) => _requestService.Get<YazarlarDto>("Yazar/GetYazarById?yazarId=" + yazarId);
+
+
+		public YazarlarDto InsertYazar(YazarlarDto model)
+		{
+			return _requestService.Post<YazarlarDto>("Yazar/InsertYazar", model);
+		}
+
+		public YazarlarDto UpdateYazar(YazarlarDto model)
+		{
+			return _requestService.Post<YazarlarDto>("Yazar/UpdateYazar", model);
+		}
+	}
 }
