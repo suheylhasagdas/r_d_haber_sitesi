@@ -461,3 +461,7 @@ table.dataTable>tbody>tr.child ul.dtr-details {
         flex-direction: row;
     }
 }
+
+#dataTables-example_filter{
+	float:right !important;
+}
