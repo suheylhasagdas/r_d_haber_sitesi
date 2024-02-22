@@ -55,6 +55,13 @@ namespace Business.Base
 		public YazarlarDto UpdateYazar(YazarlarDto model)
 		{
 			var Yazar = _repository.GetById(model.Id);
+			Yazar.Id = model.Id;
+			Yazar.Ad = model.Ad;
+			Yazar.Soyad = model.Soyad;
+			Yazar.Sifre = model.Sifre;
+			Yazar.Eposta = model.Eposta;
+			Yazar.Resim = model.Resim;
+			Yazar.Aktifmi = model.Aktifmi;
 			var response = _repository.Update(Yazar);
 
 			return YazarItem(response);
