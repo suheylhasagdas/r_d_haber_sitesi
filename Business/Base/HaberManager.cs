@@ -8,9 +8,13 @@ namespace Business.Base
 	public class HaberManager : IHaberService
 	{
 		private readonly IRepository<Haberler> _repository;
-		public HaberManager(IRepository<Haberler> repository)
+		private readonly IRepository<Yazarlar> _repositoryYazar;
+		private readonly IRepository<Kategoriler> _repositoryKategori;
+		public HaberManager(IRepository<Haberler> repository, IRepository<Yazarlar> repositoryYazar, IRepository<Kategoriler> repositoryKategori)
 		{
 			_repository = repository;
+			_repositoryYazar = repositoryYazar;
+			_repositoryKategori = repositoryKategori;
 		}
 		public bool DeleteHaber(int id)
 		{
@@ -38,6 +42,7 @@ namespace Business.Base
 
 		public HaberlerDto InsertHaber(HaberlerDto model)
 		{
+			model.EklenmeTarihi = DateTime.Now;
 			Haberler response = _repository.Insert(HaberItem(model));
 
 			return HaberItem(response);
@@ -46,6 +51,15 @@ namespace Business.Base
 		public HaberlerDto UpdateHaber(HaberlerDto model)
 		{
 			var haber = _repository.GetById(model.Id);
+			haber.Id = model.Id;
+			haber.Baslik = model.Baslik;
+			haber.Icerik = model.Icerik;
+			haber.Aktifmi = model.Aktifmi;
+			haber.Resim = model.Resim;
+			haber.YazarId = model.YazarId;
+			haber.KategoriId = model.KategoriId;
+			haber.Video = model.Video;
+
 			Haberler response = _repository.Update(haber);
 
 			return HaberItem(response);
@@ -61,7 +75,9 @@ namespace Business.Base
 			result.Resim = model.Resim;
 			result.EklenmeTarihi = model.EklenmeTarihi;
 			result.YazarId = model.YazarId;
+			result.Yazar = _repositoryYazar.GetById(model.YazarId).Ad;
 			result.KategoriId = model.KategoriId;
+			result.Kategori = _repositoryKategori.GetById(model.KategoriId).Aciklama;
 			result.GosterimSayisi = model.GosterimSayisi;
 			result.Video = model.Video;
 			return result;

@@ -6,7 +6,9 @@
 		public string Baslik { get; set; }
 		public DateTime EklenmeTarihi { get; set; }
 		public int YazarId { get; set; }
+		public string? Yazar {  get; set; }
 		public int KategoriId { get; set; }
+		public string? Kategori { get; set; }
 		public string Icerik { get; set; }
 		public string Resim { get; set; }
 		public string Video { get; set; }
