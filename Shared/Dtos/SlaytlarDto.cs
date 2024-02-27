@@ -8,6 +8,7 @@ namespace Shared.Dtos
 		public string Baslik { get; set; }
 		public string Icerik { get; set; }
 		public int HaberId { get; set; }
+		public string? Haber { get; set; }
 		public string Resim { get; set; }
 		public bool Aktifmi { get; set; }
 	}

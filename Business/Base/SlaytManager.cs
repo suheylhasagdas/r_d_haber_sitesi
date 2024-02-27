@@ -8,9 +8,11 @@ namespace Business.Base
 	public class SlaytManager : ISlaytService
 	{
 		private readonly IRepository<Slaytlar > _repository;
-        public SlaytManager(IRepository<Slaytlar> repository)
+		private readonly IRepository<Haberler> _haberRepository;
+		public SlaytManager(IRepository<Slaytlar> repository, IRepository<Haberler> haberRepository)
         {
 			_repository = repository;
+			_haberRepository = haberRepository;
 		}
         public bool DeleteSlayt(int id)
 		{
@@ -45,6 +47,11 @@ namespace Business.Base
 		public SlaytlarDto UpdateSlayt(SlaytlarDto model)
 		{
 			var slayt = _repository.GetById(model.Id);
+			slayt.Aktifmi = model.Aktifmi;
+			slayt.Resim = model.Resim;
+			slayt.Icerik = model.Icerik;
+			slayt.Baslik = model.Baslik;
+			slayt.HaberId = model.HaberId;
 			var response = _repository.Update(slayt);
 
 			return SlaytItem(response);
@@ -57,6 +64,7 @@ namespace Business.Base
 			result.Baslik = model.Baslik;
 			result.Icerik = model.Icerik;
 			result.HaberId = model.HaberId;
+			result.Haber = _haberRepository.GetById(model.HaberId).Baslik;
 			result.Resim = model.Resim;
 			result.Aktifmi = model.Aktifmi;
 			return result;
