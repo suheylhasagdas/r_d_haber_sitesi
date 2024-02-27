@@ -1,8 +1,5 @@
 ﻿@using Shared.Dtos
 @model List<YazarlarDto>
-@{
-	string apiUrl = "https://localhost:7063";
-}
 
 <div class="container">
 	<div class="page-title">
@@ -36,7 +33,7 @@
 							@foreach (var item in Model)
 							{
 								<tr>
-									<td><img style=" max-width: 100%; " src="@Url.Content(apiUrl + item.Resim)" /></td>
+									<td><img style=" max-width: 100%; " src="@Url.Content(@conf.GetSection("Ayarlar")["ApiUrl"] + item.Resim)" /></td>
 									<td>@item.Ad</td>
 									<td>@item.Soyad</td>
 									<td>@item.Eposta</td>

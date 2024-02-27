@@ -1,8 +1,6 @@
 ﻿@using AdminUI.Models
 @model YazarViewModel
-@{
-	string apiUrl = "https://localhost:7063";
-}
+
 <div class="container">
 	<div class="page-title">
 		<h3>Yorum İşlemleri</h3>
@@ -36,7 +34,7 @@
 						</div>
 						<div class="mb-3">
 							<label for="email" class="form-label">Geçerli Resim</label>
-							<img src="@Url.Content(apiUrl + Model.Resim)" style="max-height:150px;" />
+							<img src="@Url.Content(@conf.GetSection("Ayarlar")["ApiUrl"] + Model.Resim)" style="max-height:150px;" />
 							@Html.HiddenFor(x=>x.Resim)
 						</div>
 						<div class="mb-3">
