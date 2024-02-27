@@ -7,8 +7,8 @@ namespace ApiAccess.Abstract
 		YazarlarDto GetYazarByEmailPassword (string email, string password);
 		List<YazarlarDto> GetAllYazar();
 		YazarlarDto InsertYazar(YazarlarDto model);
-		YazarlarDto GetYazarById(int kategoriId);
+		YazarlarDto GetYazarById(int yazarId);
 		YazarlarDto UpdateYazar(YazarlarDto model);
-		bool DeleteYazar(int kategoriId);
+		bool DeleteYazar(int yazarId);
 	}
 }
