@@ -66,8 +66,10 @@ namespace Business.Base
 		}
 
 		private HaberlerDto HaberItem(Haberler model)
-		{
-			HaberlerDto result = new HaberlerDto();
+		{ 
+			var yazar = _repositoryYazar.GetById(model.YazarId);
+
+            HaberlerDto result = new HaberlerDto();
 			result.Id = model.Id;
 			result.Baslik = model.Baslik;
 			result.Icerik = model.Icerik;
@@ -75,8 +77,9 @@ namespace Business.Base
 			result.Resim = model.Resim;
 			result.EklenmeTarihi = model.EklenmeTarihi;
 			result.YazarId = model.YazarId;
-			result.Yazar = _repositoryYazar.GetById(model.YazarId).Ad;
-			result.KategoriId = model.KategoriId;
+			result.Yazar = yazar.Ad + " " + yazar.Soyad;
+			result.YazarResim = yazar.Resim;
+            result.KategoriId = model.KategoriId;
 			result.Kategori = _repositoryKategori.GetById(model.KategoriId).Aciklama;
 			result.GosterimSayisi = model.GosterimSayisi;
 			result.Video = model.Video;
