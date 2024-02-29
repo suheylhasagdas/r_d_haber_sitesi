@@ -7,7 +7,8 @@
 		public DateTime EklenmeTarihi { get; set; }
 		public int YazarId { get; set; }
 		public string? Yazar {  get; set; }
-		public int KategoriId { get; set; }
+        public string? YazarResim { get; set; }
+        public int KategoriId { get; set; }
 		public string? Kategori { get; set; }
 		public string Icerik { get; set; }
 		public string Resim { get; set; }
